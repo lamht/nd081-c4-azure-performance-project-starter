@@ -80,7 +80,10 @@ else:
     title = app.config['TITLE']
 
 # Redis Connection
-r = redis.Redis()
+if ("REDIS" in os.environ and os.environ['REDIS']):
+    r = redis.Redis(os.environ['REDIS'])
+else:
+    r = redis.Redis()
 
 # Change title to host name to demo NLB
 if app.config['SHOWHOST'] == "true":

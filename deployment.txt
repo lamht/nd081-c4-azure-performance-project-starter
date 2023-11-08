@@ -1,0 +1,9 @@
+az vmss list-instance-connection-info \
+  --resource-group lamht-c4-project \
+  --name lamht-udacity-vmss
+
+ssh udacityadmin@23.99.8.98 -p 50003
+
+az aks get-credentials --resource-group lamht-c4-project --name lamht-udacity-cluster --verbose
+
+kubectl autoscale deployment azure-vote-front --cpu-percent=10 --min=1 --max=10
